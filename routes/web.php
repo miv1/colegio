@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Hola mundo';
+});
+Route::resource('alumnos', 'AlumnosController');
+Route::resource('materias', 'MateriasController');
+
+Route::get('pruebasAlumno', function(){
+    ;
 });
