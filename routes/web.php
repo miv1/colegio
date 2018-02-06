@@ -14,9 +14,13 @@
 Route::get('/', function () {
     return 'Hola mundo';
 });
-Route::get('/alumno', 'AlumnosController@index');
-Route::get('/alumno/{$id}', 'AlumnoController@show')-> where ('id')
-Route::resource('materias', 'MateriasController');
+Route::get('/alumno', 'AlumnoController@index');
+Route::get('/alumno/{alumno}', 'AlumnoController@show')
+        -> where ('alumno','[0,9]+');
+       //    ->nombres('alumnos.show')
+Route::get('/alumno/nuevo', 'AlumnoController@create');
+Route::post('/alumno/crear', 'AlumnoController@store');
+//Route::resource('materias', 'MateriasController');
 
 Route::get('pruebasAlumno', function(){
     ;
