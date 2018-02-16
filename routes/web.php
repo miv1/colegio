@@ -15,9 +15,8 @@ Route::get('/', function () {
     return 'Hola mundo';
 });
 Route::get('/alumno', 'AlumnosController@index');
-Route::get('/alumno/{$id}', 'AlumnoController@show')-> where ('id')
-Route::resource('materias', 'MateriasController');
+Route::get('/alumno/{$id}', 'AlumnoController@show')-> where ('id');
+//Route::get('/alumno/{$id}', 'AlumnoController@create')-> where ('id')
+//Route::resource('materias', 'MateriasController');
 
-Route::get('pruebasAlumno', function(){
-    ;
-});
+//Route::get('pruebasAlumno', function(){     ; });
