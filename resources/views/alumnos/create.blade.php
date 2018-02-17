@@ -3,7 +3,7 @@
 @section('content')
 <h1>Crear alumno </h1>
 
-<form method="POST" action="{{url('alumnojj')}}">
+<form method="POST" action="{{url('alumno')}}">
 {{csrf_field()}}
 
 <label for="nombres">Nombres </label>
