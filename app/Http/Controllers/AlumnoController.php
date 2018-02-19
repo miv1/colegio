@@ -16,42 +16,61 @@ class AlumnoController extends Controller
         //return $alumnos;
                //dd($alumnos);
        $titulo = 'Alumnos';
-        return view('alumnos.alumnos', compact('title', 'alumnos'));
+        return view('alumnos.index', compact('title', 'alumnos'));
   
     }
     public function show(Alumno $alumno)
     {
         dd($alumno);
        return view('alumnos.show', compact('alumno'));
-    }    
+    }     
 
     public function store()
     {
         $data =request()->all();
         Alumno::create
         ([
-            'nombres' =>  $data['nombres'],
+            'nombre' =>  $data['nombres'],
             'apellido_paterno' =>  $data['apellido_paterno'],
             'apellido_materno' =>  $data['apellido_materno'],
             'ci' =>  $data['ci']
         ]);
-        return redirect()->route('alumnos.alumno' );
+        return redirect()->route('alumnos.index' );
     }
     public function create()
     {
         //return 'hola';
        return view ('alumnos.create');
     }   
-    public function edit()
+    
+    
+    /* public function edit(Alumno $alumno) */
+    public function edit($id)
     {
+        $alumno = Alumno::find($id);
+            return view ('alumnos.edit', compact('alumno'));
+            /* 
+            ['alumno' => $alumno]); */
+    }
+    public function update(Request $request,Alumno $alumno)
+    {
+        request()->validate([
+            'nombre' => 'required',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'ci' => 'required',
+        ]);
+        $alumno->update($request->all());
+        return view ('/');
+        /*  return redirect()->route('alumnos.index'); */
+                     /*   ->with('success','alumnos updated successfully'); */
 
     }
-    public function update()
+    public function destroy($id)
     {
-
-    }
-    public function destroy()
-    {
-
+        Alumno::destroy($id);
+       
+        return redirect()->route('alumnos.index')
+                        ->with('success','alumno eliminado successfully');
     }
 }

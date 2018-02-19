@@ -10,13 +10,13 @@
 <body>
     <h1>  Alumnos  </h1>
     <?php foreach ($alumnos as $alumno):?>
-<li> <?php echo $alumno->nombres?>  </li> 
+<li> <?php echo $alumno->nombre?>  </li> 
 <?php endforeach; ?>
     <table>
         <th> nombre </th>
         @foreach($alumnos as $alumno)
         <td>
-        {{$alumno->nombres}}
+        {{$alumno->nombre}}
         </td>
     @endforeach
     </table>

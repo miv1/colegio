@@ -20,7 +20,8 @@ Route::get('/alumno/{alumno}', 'AlumnoController@show')
        //    ->nombres('alumnos.show')
 Route::get('/alumno/nuevo', 'AlumnoController@create');
 Route::post('/alumno/crear', 'AlumnoController@store');
-
+Route::get('/alumno/{id}/editar','AlumnoController@edit')->name('alumno.edit');
+Route::put('/alumno/{id}', 'AlumnoController@update');
 //Route::resource('materias', 'MateriasController');
 
 //Route::get('pruebasAlumno', function(){     ; });
