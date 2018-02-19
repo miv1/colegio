@@ -21,7 +21,11 @@ Route::get('/alumno/{alumno}', 'AlumnoController@show')
 Route::get('/alumno/nuevo', 'AlumnoController@create');
 Route::post('/alumno/crear', 'AlumnoController@store');
 Route::get('/alumno/{id}/editar','AlumnoController@edit')->name('alumno.edit');
-Route::put('/alumno/{id}', 'AlumnoController@update');
+Route::post('/alumno/{id}', 'AlumnoController@update');
+Route::delete('alumno/{id}','AlumnoController@destroy')->name('alumno.destroy');
+
+
+//Route::post('/alumno', 'AlumnoController@update');
 //Route::resource('materias', 'MateriasController');
 
 //Route::get('pruebasAlumno', function(){     ; });

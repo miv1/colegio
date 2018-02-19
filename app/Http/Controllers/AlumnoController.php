@@ -16,15 +16,13 @@ class AlumnoController extends Controller
         //return $alumnos;
                //dd($alumnos);
        $titulo = 'Alumnos';
-        return view('alumnos.index', compact('title', 'alumnos'));
-  
+        return view('alumnos.index', compact('title', 'alumnos'));  
     }
     public function show(Alumno $alumno)
     {
         dd($alumno);
        return view('alumnos.show', compact('alumno'));
     }     
-
     public function store()
     {
         $data =request()->all();
@@ -35,24 +33,19 @@ class AlumnoController extends Controller
             'apellido_materno' =>  $data['apellido_materno'],
             'ci' =>  $data['ci']
         ]);
-        return redirect()->route('alumnos.index' );
+        return redirect('alumno')
+                      ->with('success','alumno creado satisfactoriamente'); 
     }
     public function create()
     {
-        //return 'hola';
        return view ('alumnos.create');
     }   
-    
-    
-    /* public function edit(Alumno $alumno) */
     public function edit($id)
     {
         $alumno = Alumno::find($id);
             return view ('alumnos.edit', compact('alumno'));
-            /* 
-            ['alumno' => $alumno]); */
     }
-    public function update(Request $request,Alumno $alumno)
+    public function update(Request $request,$id)
     {
         request()->validate([
             'nombre' => 'required',
@@ -60,17 +53,22 @@ class AlumnoController extends Controller
             'apellido_materno' => 'required',
             'ci' => 'required',
         ]);
+        $alumno = Alumno::where('id',  $id)->first();
+        $alumno->nombre = $request->nombre;
+        $alumno->apellido_paterno = $request->apellido_paterno;
+        $alumno->apellido_materno = $request->apellido_materno;
+        $alumno->ci = $request -> ci;
+        $alumno->save();
         $alumno->update($request->all());
-        return view ('/');
-        /*  return redirect()->route('alumnos.index'); */
-                     /*   ->with('success','alumnos updated successfully'); */
-
+          //return redirect()->route('/alumno'); 
+         return redirect('alumno')
+                      ->with('success','alumno actualizado satisfactoriamente'); 
     }
-    public function destroy($id)
+    public function destroy(Alumno $alumno)
     {
-        Alumno::destroy($id);
-       
-        return redirect()->route('alumnos.index')
-                        ->with('success','alumno eliminado successfully');
+        //$alumno->delete();
+        Alumno::destroy($alumno);       
+        return redirect('alumno')
+                        ->with('success','alumno eliminado satisfactoriamente');
     }
 }

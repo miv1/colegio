@@ -10,16 +10,14 @@
 <body>
     <h1>  Alumnos  </h1>
     <?php foreach ($alumnos as $alumno):?>
-<li> <?php echo $alumno->nombre?>  </li> 
+<li> <?php echo $alumno->nombre, " ", $alumno->apellido_paterno, " ", $alumno->apellido_materno?> | <a href="{{route('alumno.edit', $alumno) }}">Editar</a>
+
+<form action ="{{route('alumno.destroy', $alumno)}}" method="POST">
+{{csrf_field('DELETE')}}
+<button type = "submit" > Eliminar </button>
+</form>
+</li>
 <?php endforeach; ?>
-    <table>
-        <th> nombre </th>
-        @foreach($alumnos as $alumno)
-        <td>
-        {{$alumno->nombre}}
-        </td>
-    @endforeach
-    </table>
-    
+   
 </body>
 </html>

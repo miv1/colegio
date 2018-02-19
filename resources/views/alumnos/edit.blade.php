@@ -7,7 +7,7 @@
  {{csrf_field()}}
 <button type = "submit">Crear alumno </button>
 </form>  -->
- <form method="POST" action="{{url('alumno')}}">
+ <form method="POST" action="{{url('alumno/'.$alumno->id)}}">
 {{csrf_field()}}
 
 <label for="nombres">Nombres </label>
