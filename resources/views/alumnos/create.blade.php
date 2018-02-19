@@ -1,9 +1,13 @@
 @extends('layouts.admin')
-@section('title', "Crear alumnos")
+@section('title', "Agregar alumnos")
 @section('content')
 <h1>Crear alumno </h1>
 
-<form method="POST" action="{{url('alumno/crear')}}">
+ <!-- <form method="POST" action="{{url('alumnos/create') }}">
+ {{csrf_field()}}
+<button type = "submit">Crear alumno </button>
+</form>  -->
+ <form method="POST" action="{{url('alumno/crear')}}">
 {{csrf_field()}}
 
 <label for="nombres">Nombres </label>
@@ -22,7 +26,5 @@
 <button type = "submit">Crear alumno </button>
 </form>
 <p>
-<a href = "{{route ('alumnos.alumnos')}}"> Regresar al listado de usuarios</a>
-
-</p>
+</p> 
 @endsection
